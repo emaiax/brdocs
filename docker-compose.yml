@@ -1,0 +1,15 @@
+version: "3"
+
+volumes:
+  mix_volume:
+  mix_deps_volume:
+
+services:
+  brdocs:
+    image: elixir:1.7-alpine
+    working_dir: /app
+    command: mix test
+    volumes:
+      - ./:/app
+      - mix_volume:/root/.mix
+      - mix_deps_volume:/app/deps
