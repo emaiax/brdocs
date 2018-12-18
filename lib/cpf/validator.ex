@@ -30,24 +30,21 @@ defmodule BrDocs.CPF.Validator do
   def validate(%BrDoc{kind: :cpf, value: nil}), do: false
 
   def validate(%BrDoc{kind: :cpf, value: value}) do
-    value = value |> to_string()
+    value = value |> to_string() |> String.replace(~r/\D/, "", global: true)
 
     first_digit = value
                   |> String.slice(0, 9)
-                  |> Utils.mod11()
-                  |> to_string()
+                  |> Utils.make_digit()
 
     last_digit = value
                  |> String.slice(0, 10)
-                 |> Utils.mod11()
-                 |> to_string()
+                 |> Utils.make_digit()
 
     value == (String.slice(value, 0, 9) <> first_digit <> last_digit)
   end
 
   def validate(value) do
     value
-    |> to_string()
     |> make_cpf()
     |> validate()
   end

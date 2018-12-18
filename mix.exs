@@ -10,7 +10,6 @@ defmodule App.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      preferred_cli_env: ["test.watch": :test],
       description: "Validation and formatting for brazilian ID documents (CPF/CNPJ)"
     ]
   end

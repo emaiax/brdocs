@@ -22,8 +22,8 @@ defmodule BrDocs.CPF.FormatterTest do
 
       assert BrDocs.CPF.Formatter.format("") == %BrDoc{kind: :cpf, value: ""}
       assert BrDocs.CPF.Formatter.format(nil) == %BrDoc{kind: :cpf, value: ""}
-      assert BrDocs.CPF.Formatter.format(123) == %BrDoc{kind: :cpf, value: ""}
-      assert BrDocs.CPF.Formatter.format("123") == %BrDoc{kind: :cpf, value: ""}
+      assert BrDocs.CPF.Formatter.format(123) == %BrDoc{kind: :cpf, value: "123"}
+      assert BrDocs.CPF.Formatter.format("123") == %BrDoc{kind: :cpf, value: "123"}
     end
   end
 end
