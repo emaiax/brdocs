@@ -10,15 +10,13 @@ defmodule App.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      description: "Validation and formatting for brazilian ID documents (CPF/CNPJ)"
+      description: "Elixir client to generate, validate and format different Brazilian docs"
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [
-      extra_applications: [:logger]
-    ]
+    []
   end
 
   # Specifies which paths to compile per environment.
@@ -29,7 +27,7 @@ defmodule App.MixProject do
     [
       files: ~w(lib test config mix.exs README*),
       maintainers: ["Eduardo Maia"],
-      licenses: ["Unlicense"],
+      licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/emaiax/brdocs"}
     ]
   end
