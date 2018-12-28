@@ -1,6 +1,8 @@
 defmodule BrDocsTest do
   use ExUnit.Case, async: true
 
+  alias BrDocs.BrDoc
+
   describe "docs generation" do
     test "generate cpf" do
       assert Regex.match?(~r/\d{11}/, BrDocs.generate(:cpf).value)

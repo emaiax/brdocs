@@ -1,6 +1,8 @@
 defmodule BrDocs.CNPJ.FormatterTest do
   use ExUnit.Case, async: true
 
+  alias BrDocs.BrDoc
+
   defp formatted_cnpj_struct(value) do
     %BrDoc{kind: :cnpj, value: value} |> BrDocs.CNPJ.Formatter.format()
   end

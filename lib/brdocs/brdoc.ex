@@ -1,4 +1,4 @@
-defmodule BrDoc do
+defmodule BrDocs.BrDoc do
   @docs [:cpf, :cnpj]
 
   @moduledoc """

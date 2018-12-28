@@ -1,6 +1,8 @@
 defmodule BrDocs.CPF.FormatterTest do
   use ExUnit.Case, async: true
 
+  alias BrDocs.BrDoc
+
   defp formatted_cpf_struct(value) do
     %BrDoc{kind: :cpf, value: value} |> BrDocs.CPF.Formatter.format()
   end

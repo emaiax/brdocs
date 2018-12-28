@@ -1,5 +1,5 @@
 defmodule BrDocs.CNPJ.Validator do
-  alias BrDocs.Utils
+  alias BrDocs.{BrDoc, Utils}
 
   def validate(%BrDoc{kind: :cnpj, value: ""}), do: false
   def validate(%BrDoc{kind: :cnpj, value: nil}), do: false

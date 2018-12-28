@@ -1,6 +1,8 @@
 defmodule BrDocs.CNPJ.GeneratorTest do
   use ExUnit.Case, async: true
 
+  alias BrDocs.BrDoc
+
   describe to_string(__MODULE__) do
     test "generate unformatted cnpj" do
       %BrDoc{kind: :cnpj, value: cnpj} = BrDocs.CNPJ.Generator.generate()

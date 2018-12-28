@@ -1,4 +1,6 @@
 defmodule BrDocs.CPF.Formatter do
+  alias BrDocs.BrDoc
+
   @raw_size 11
   @regex_replacement "\\1.\\2.\\3-\\4"
   @doc_regex ~r/(\d{3})?(\d{3})?(\d{3})?(\d{2})/

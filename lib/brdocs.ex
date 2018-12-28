@@ -1,6 +1,8 @@
 defmodule BrDocs do
   @docs [:cpf, :cnpj]
 
+  alias BrDocs.BrDoc
+
   @moduledoc ~S"""
   Generation, validation and formatting for Brazilian docs.
 

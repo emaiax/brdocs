@@ -1,5 +1,6 @@
 defmodule BrDocs.CPF.Generator do
-  alias BrDocs.Utils
+  alias BrDocs.{BrDoc, Utils}
+
   alias BrDocs.CPF.Formatter
 
   def generate(opts \\ [formatted: false])

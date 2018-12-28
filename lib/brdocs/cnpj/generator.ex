@@ -1,5 +1,6 @@
 defmodule BrDocs.CNPJ.Generator do
-  alias BrDocs.Utils
+  alias BrDocs.{BrDoc, Utils}
+
   alias BrDocs.CNPJ.Formatter
 
   def generate(opts \\ [formatted: false])

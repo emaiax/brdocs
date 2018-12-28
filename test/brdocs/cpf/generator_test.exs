@@ -1,6 +1,8 @@
 defmodule BrDocs.CPF.GeneratorTest do
   use ExUnit.Case, async: true
 
+  alias BrDocs.BrDoc
+
   describe to_string(__MODULE__) do
     test "generate unformatted cpf" do
       %BrDoc{kind: :cpf, value: cpf} = BrDocs.CPF.Generator.generate()

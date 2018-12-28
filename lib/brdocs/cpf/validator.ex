@@ -1,5 +1,5 @@
 defmodule BrDocs.CPF.Validator do
-  alias BrDocs.Utils
+  alias BrDocs.{BrDoc, Utils}
 
   @moduledoc """
     Um CPF declarado como válido por essa ferramenta não significa que ele exista no
