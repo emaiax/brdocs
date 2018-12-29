@@ -25,7 +25,7 @@ defmodule BrDocs.CPF.Generator do
   """
   def generate(opts \\ [formatted: false])
 
-  def generate(formatted: true), do: generate() |> Formatter.format()
+  def generate(formatted: true), do: Formatter.format(generate())
 
   def generate(formatted: false) do
     doc = Utils.generate_random_numbers(9)

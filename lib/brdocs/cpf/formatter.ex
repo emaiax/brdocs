@@ -33,7 +33,6 @@ defmodule BrDocs.CPF.Formatter do
         iex> BrDocs.CPF.Formatter.format("111.444.777-35")
         %BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"}
 
-
         iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: ""})
         %BrDocs.BrDoc{kind: :cpf, value: ""}
 
@@ -54,11 +53,15 @@ defmodule BrDocs.CPF.Formatter do
   def format(%BrDoc{kind: :cpf, value: nil}), do: make_cpf("")
 
   def format(%BrDoc{kind: :cpf, value: value}) do
-    value = value |> to_string()
+    raw_value =
+      value
+      |> to_string()
+      |> String.replace(~r/\D/, "", global: true)
 
-    raw_value = value |> String.replace(~r/\D/, "", global: true)
-
-    doc = if String.length(raw_value) == @raw_size, do: format_value(raw_value), else: value
+    doc =
+      if String.length(raw_value) == @raw_size,
+        do: format_value(raw_value),
+        else: to_string(value)
 
     make_cpf(doc)
   end

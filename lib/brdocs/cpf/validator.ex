@@ -33,7 +33,6 @@ defmodule BrDocs.CPF.Validator do
         iex> BrDocs.CPF.Validator.validate("111.444.777-35")
         true
 
-
         iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: ""})
         false
 

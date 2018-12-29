@@ -33,7 +33,6 @@ defmodule BrDocs.CNPJ.Validator do
         iex> BrDocs.CNPJ.Validator.validate("11.444.777/0001-61")
         true
 
-
         iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: ""})
         false
 
