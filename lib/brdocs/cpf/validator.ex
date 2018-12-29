@@ -54,6 +54,7 @@ defmodule BrDocs.CPF.Validator do
 
         iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"})
         true
+
   """
   def validate(%BrDoc{kind: :cpf, value: ""}), do: false
   def validate(%BrDoc{kind: :cpf, value: nil}), do: false
@@ -61,15 +62,17 @@ defmodule BrDocs.CPF.Validator do
   def validate(%BrDoc{kind: :cpf, value: value}) do
     value = value |> to_string() |> String.replace(~r/\D/, "", global: true)
 
-    first_digit = value
-                  |> String.slice(0, 9)
-                  |> Utils.make_digit()
+    first_digit =
+      value
+      |> String.slice(0, 9)
+      |> Utils.make_digit()
 
-    last_digit = value
-                 |> String.slice(0, 10)
-                 |> Utils.make_digit()
+    last_digit =
+      value
+      |> String.slice(0, 10)
+      |> Utils.make_digit()
 
-    value == (String.slice(value, 0, 9) <> first_digit <> last_digit)
+    value == String.slice(value, 0, 9) <> first_digit <> last_digit
   end
 
   def validate(value) do

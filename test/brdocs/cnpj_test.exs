@@ -2,7 +2,7 @@ defmodule BrDocs.CNPJTest do
   use ExUnit.Case, async: true
 
   test "cnpj is generated" do
-    assert BrDocs.CNPJ.generate
+    assert BrDocs.CNPJ.generate()
   end
 
   test "cnpj is formatted" do

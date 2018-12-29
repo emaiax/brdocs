@@ -9,11 +9,17 @@ defmodule BrDocs.CNPJ.FormatterTest do
 
   describe to_string(__MODULE__) do
     test "format raw cnpj" do
-      assert formatted_cnpj_struct("11444777000161") == %BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+      assert formatted_cnpj_struct("11444777000161") == %BrDoc{
+               kind: :cnpj,
+               value: "11.444.777/0001-61"
+             }
     end
 
     test "format already formatted cnpj" do
-      assert formatted_cnpj_struct("11.444.777/0001-61") == %BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+      assert formatted_cnpj_struct("11.444.777/0001-61") == %BrDoc{
+               kind: :cnpj,
+               value: "11.444.777/0001-61"
+             }
     end
 
     test "doesn't format anything else than a valid cnpj struct" do

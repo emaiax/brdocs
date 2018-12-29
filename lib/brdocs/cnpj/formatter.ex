@@ -48,6 +48,7 @@ defmodule BrDocs.CNPJ.Formatter do
 
         iex> BrDocs.CNPJ.Formatter.format(%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"})
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+
   """
   def format(%BrDoc{kind: :cnpj, value: ""}), do: make_cnpj("")
   def format(%BrDoc{kind: :cnpj, value: nil}), do: make_cnpj("")

@@ -54,6 +54,7 @@ defmodule BrDocs.CNPJ.Validator do
 
         iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"})
         true
+
   """
   def validate(%BrDoc{kind: :cnpj, value: ""}), do: false
   def validate(%BrDoc{kind: :cnpj, value: nil}), do: false
@@ -61,15 +62,17 @@ defmodule BrDocs.CNPJ.Validator do
   def validate(%BrDoc{kind: :cnpj, value: value}) do
     value = value |> to_string() |> String.replace(~r/\D/, "", global: true)
 
-    first_digit = value
-                  |> String.slice(0, 12)
-                  |> Utils.make_digit()
+    first_digit =
+      value
+      |> String.slice(0, 12)
+      |> Utils.make_digit()
 
-    last_digit = value
-                 |> String.slice(0, 13)
-                 |> Utils.make_digit()
+    last_digit =
+      value
+      |> String.slice(0, 13)
+      |> Utils.make_digit()
 
-    value == (String.slice(value, 0, 12) <> first_digit <> last_digit)
+    value == String.slice(value, 0, 12) <> first_digit <> last_digit
   end
 
   def validate(value) do
