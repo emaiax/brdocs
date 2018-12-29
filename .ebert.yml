@@ -1,3 +1,4 @@
+styleguide: plataformatec/linters
 engines:
   credo:
     enabled: true
