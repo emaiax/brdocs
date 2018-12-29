@@ -6,7 +6,7 @@ volumes:
 
 services:
   brdocs:
-    image: elixir:1.6-alpine
+    image: elixir:1.7-alpine
     working_dir: /app
     command: mix test
     volumes:
