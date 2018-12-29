@@ -24,11 +24,12 @@
       #
       requires: [],
       check_for_updates: false,
+      color: true,
       #
       # If you want to enforce a style guide and need a more traditional linting
       # experience, you can change `strict` to `true` below:
       #
-      strict: false,
+      strict: true,
       #
       # You can customize the parameters of any check by adding a second element
       # to the tuple.

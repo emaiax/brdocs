@@ -36,7 +36,7 @@ defmodule App.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.19.0", only: :dev},
-      {:credo, "~> 1.0.0", only: [:dev, :test]}
+      {:credo, "~> 0.10.0", only: [:dev, :test]}
     ]
   end
 end
