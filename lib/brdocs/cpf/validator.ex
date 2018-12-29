@@ -55,6 +55,7 @@ defmodule BrDocs.CPF.Validator do
         true
 
   """
+  @spec validate(BrDocs.BrDoc.t()) :: boolean()
   def validate(%BrDoc{kind: :cpf, value: ""}), do: false
   def validate(%BrDoc{kind: :cpf, value: nil}), do: false
 
@@ -74,6 +75,7 @@ defmodule BrDocs.CPF.Validator do
     value == String.slice(value, 0, 9) <> first_digit <> last_digit
   end
 
+  @spec validate(String.t()) :: boolean()
   def validate(value) do
     value
     |> make_cpf()

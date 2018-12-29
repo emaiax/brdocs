@@ -35,6 +35,7 @@ defmodule BrDocs.Utils do
         5
 
   """
+  @spec mod11(String.t(), list(integer())) :: integer()
   def mod11(value, range) do
     numbers =
       value
@@ -66,6 +67,7 @@ defmodule BrDocs.Utils do
       "064766405673"
 
   """
+  @spec generate_random_numbers(integer()) :: String.t()
   def generate_random_numbers(size) do
     Enum.reduce(1..size, "", fn _, acc -> acc <> to_string(Enum.random(0..9)) end)
   end
@@ -95,6 +97,7 @@ defmodule BrDocs.Utils do
       "1"
 
   """
+  @spec make_digit(String.t()) :: String.t()
   def make_digit(value) do
     range =
       case String.length(value) do

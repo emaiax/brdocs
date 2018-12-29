@@ -10,6 +10,7 @@ defmodule BrDocs.CPF do
 
   Delegates the formatting to `BrDocs.CPF.Formatter.format/1`.
   """
+  @spec format(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   defdelegate format(cpf), to: BrDocs.CPF.Formatter
 
   @doc """
@@ -17,6 +18,7 @@ defmodule BrDocs.CPF do
 
   Delegates the validation to `BrDocs.CPF.Validator.validate/1`.
   """
+  @spec validate(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   defdelegate validate(cpf), to: BrDocs.CPF.Validator
 
   @doc """
@@ -24,5 +26,6 @@ defmodule BrDocs.CPF do
 
   Delegates the generation to `BrDocs.CPF.Generator.generate/1`.
   """
+  @spec generate(keyword()) :: BrDocs.BrDoc.t()
   defdelegate generate(opts \\ [formatted: false]), to: BrDocs.CPF.Generator
 end

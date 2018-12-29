@@ -8,6 +8,8 @@ defmodule BrDocs.BrDoc do
   * `value` - A string containing the raw or formatted value of the doc.
   """
 
+  @type t() :: %BrDocs.BrDoc{kind: atom(), value: String.t()}
+
   defstruct value: "", kind: nil
 
   @doc false
