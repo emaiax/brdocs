@@ -4,7 +4,7 @@ defmodule BrDocs.CPF.ValidatorTest do
   alias BrDocs.BrDoc
 
   defp validate_cpf_struct(value) do
-    %BrDoc{kind: :cpf, value: value} |> BrDocs.CPF.Validator.validate()
+    BrDocs.CPF.Validator.validate(%BrDoc{kind: :cpf, value: value})
   end
 
   describe to_string(__MODULE__) do

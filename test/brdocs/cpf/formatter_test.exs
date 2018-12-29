@@ -4,7 +4,7 @@ defmodule BrDocs.CPF.FormatterTest do
   alias BrDocs.BrDoc
 
   defp formatted_cpf_struct(value) do
-    %BrDoc{kind: :cpf, value: value} |> BrDocs.CPF.Formatter.format()
+    BrDocs.CPF.Formatter.format(%BrDoc{kind: :cpf, value: value})
   end
 
   describe to_string(__MODULE__) do

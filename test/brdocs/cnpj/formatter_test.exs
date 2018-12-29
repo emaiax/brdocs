@@ -4,7 +4,7 @@ defmodule BrDocs.CNPJ.FormatterTest do
   alias BrDocs.BrDoc
 
   defp formatted_cnpj_struct(value) do
-    %BrDoc{kind: :cnpj, value: value} |> BrDocs.CNPJ.Formatter.format()
+    BrDocs.CNPJ.Formatter.format(%BrDoc{kind: :cnpj, value: value})
   end
 
   describe to_string(__MODULE__) do

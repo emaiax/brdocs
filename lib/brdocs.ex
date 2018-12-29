@@ -13,7 +13,7 @@ defmodule BrDocs do
   @doc """
   Used mostly for testing, yet you can generate a valid doc. Returns a `BrDocs.BrDoc`.
 
-  The kind must be one of #{Enum.map_join(BrDoc.available_docs(), ", ", &"`#{inspect(&1)}`")}.
+  The kind must be one of #{BrDoc.formatted_available_docs()}.
 
   ## Options
 
@@ -42,9 +42,7 @@ defmodule BrDocs do
   @doc """
   Formats the value. Returns a formatted `BrDocs.BrDoc`.
 
-  The atom argument must be one of #{
-    Enum.map_join(BrDoc.available_docs(), ", ", &"`#{inspect(&1)}`")
-  }.
+  The atom argument must be one of #{BrDoc.formatted_available_docs()}.
 
   ## Examples
 
@@ -76,9 +74,7 @@ defmodule BrDocs do
   @doc """
   Validates the value. Returns a boolean.
 
-  The atom argument must be one of #{
-    Enum.map_join(BrDoc.available_docs(), ", ", &"`#{inspect(&1)}`")
-  }.
+  The atom argument must be one of #{BrDoc.formatted_available_docs()}.
 
   ## Examples
 

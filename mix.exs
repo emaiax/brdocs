@@ -5,7 +5,7 @@ defmodule App.MixProject do
     [
       app: :brdocs,
       version: "0.1.0",
-      elixir: "~> 1.6",
+      elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -35,8 +35,8 @@ defmodule App.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.19.0", only: :dev},
+      {:credo, "~> 0.10.0", only: [:dev, :test]}
     ]
   end
 end

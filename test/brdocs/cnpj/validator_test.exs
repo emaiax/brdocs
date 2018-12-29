@@ -4,7 +4,7 @@ defmodule BrDocs.CNPJ.ValidatorTest do
   alias BrDocs.BrDoc
 
   defp validate_cnpj_struct(value) do
-    %BrDoc{kind: :cnpj, value: value} |> BrDocs.CNPJ.Validator.validate()
+    BrDocs.CNPJ.Validator.validate(%BrDoc{kind: :cnpj, value: value})
   end
 
   describe to_string(__MODULE__) do
