@@ -1,9 +1,20 @@
 defmodule BrDocs.Changeset do
   @moduledoc """
-    BrDocs validations to use with `Ecto.Changeset`
+  BrDocs validations to use with `Ecto.Changeset`
+
+  Although `BrDocs` can be used as standalone lib, trying to use `BrDocs.Changeset` without `Ecto` installed will raise an exception.
   """
 
-  import Ecto.Changeset
+  defmacro __using__(_) do
+    unless Code.ensure_loaded?(Ecto) do
+      raise "You tried to use BrDocs.Changeset, but the Ecto module is not loaded. " <>
+              "Please add ecto to your dependencies."
+    end
+
+    quote do
+      import __MODULE__
+    end
+  end
 
   @doc ~s"""
   Validates a changeset against `BrDocs` validation rules. Returns an `Ecto.Changeset`.
@@ -19,8 +30,9 @@ defmodule BrDocs.Changeset do
 
       defmodule User do
         use Ecto.Schema
+        use BrDocs.Changeset
+
         import Ecto.Changeset
-        import BrDocs.Changeset
 
         schema "users" do
           field :name
@@ -38,11 +50,11 @@ defmodule BrDocs.Changeset do
   """
   @spec validate_doc(Ecto.Changeset.t(), atom(), atom(), String.t()) :: Ecto.Changeset.t()
   def validate_doc(changeset, field, kind, custom_message \\ nil) do
-    with value <- get_change(changeset, field, ""),
+    with value <- Ecto.Changeset.get_change(changeset, field, ""),
          true <- BrDocs.validate(value, kind) do
       changeset
     else
-      _ -> add_error(changeset, field, custom_message || "is invalid")
+      _ -> Ecto.Changeset.add_error(changeset, field, custom_message || "is invalid")
     end
   end
 end
