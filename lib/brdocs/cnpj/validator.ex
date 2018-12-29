@@ -55,6 +55,7 @@ defmodule BrDocs.CNPJ.Validator do
         true
 
   """
+  @spec validate(BrDocs.BrDoc.t()) :: boolean()
   def validate(%BrDoc{kind: :cnpj, value: ""}), do: false
   def validate(%BrDoc{kind: :cnpj, value: nil}), do: false
 
@@ -74,6 +75,7 @@ defmodule BrDocs.CNPJ.Validator do
     value == String.slice(value, 0, 12) <> first_digit <> last_digit
   end
 
+  @spec validate(String.t()) :: boolean()
   def validate(value) do
     value
     |> make_cnpj()

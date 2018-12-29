@@ -10,6 +10,7 @@ defmodule BrDocs.CNPJ do
 
   Delegates the formatting to `BrDocs.CNPJ.Formatter.format/1`.
   """
+  @spec format(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   defdelegate format(value), to: BrDocs.CNPJ.Formatter
 
   @doc """
@@ -17,6 +18,7 @@ defmodule BrDocs.CNPJ do
 
   Delegates the validation to `BrDocs.CNPJ.Validator.validate/1`.
   """
+  @spec validate(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   defdelegate validate(value), to: BrDocs.CNPJ.Validator
 
   @doc """
@@ -24,5 +26,6 @@ defmodule BrDocs.CNPJ do
 
   Delegates the generation to `BrDocs.CNPJ.Generator.generate/1`.
   """
+  @spec generate(keyword()) :: BrDocs.BrDoc.t()
   defdelegate generate(opts \\ [formatted: false]), to: BrDocs.CNPJ.Generator
 end

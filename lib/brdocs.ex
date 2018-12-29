@@ -34,6 +34,7 @@ defmodule BrDocs do
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
 
   """
+  @spec generate(atom(), keyword()) :: BrDocs.BrDoc.t()
   def generate(kind, opts \\ [formatted: false])
 
   def generate(:cpf, opts), do: BrDocs.CPF.generate(opts)
@@ -53,6 +54,8 @@ defmodule BrDocs do
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
 
   """
+  @spec format(String.t(), atom()) :: BrDocs.BrDoc.t()
+  def format(value, kind)
   def format(value, :cpf), do: BrDocs.CPF.Formatter.format(value)
   def format(value, :cnpj), do: BrDocs.CNPJ.Formatter.format(value)
 
@@ -68,6 +71,7 @@ defmodule BrDocs do
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
 
   """
+  @spec format(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   def format(%BrDoc{kind: :cpf} = brdoc), do: BrDocs.CPF.Formatter.format(brdoc)
   def format(%BrDoc{kind: :cnpj} = brdoc), do: BrDocs.CNPJ.Formatter.format(brdoc)
 
@@ -103,6 +107,8 @@ defmodule BrDocs do
         false
 
   """
+  @spec validate(String.t(), atom()) :: BrDocs.BrDoc.t()
+  def validate(value, kind)
   def validate(value, :cpf), do: BrDocs.CPF.Validator.validate(value)
   def validate(value, :cnpj), do: BrDocs.CNPJ.Validator.validate(value)
 
@@ -136,6 +142,7 @@ defmodule BrDocs do
         false
 
   """
+  @spec validate(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   def validate(%BrDoc{kind: :cpf} = brdoc), do: BrDocs.CPF.Validator.validate(brdoc)
   def validate(%BrDoc{kind: :cnpj} = brdoc), do: BrDocs.CNPJ.Validator.validate(brdoc)
 end
