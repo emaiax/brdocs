@@ -23,7 +23,7 @@ defmodule BrDocs.CPF.Generator do
         %BrDocs.BrDoc{kind: :cnpj, value: "111.444.777-35"}
 
   """
-  @spec generate(keyword()) :: BrDocs.BrDoc.t()
+  @spec generate(keyword(boolean())) :: BrDocs.BrDoc.t()
   def generate(opts \\ [formatted: false])
 
   def generate(formatted: true), do: Formatter.format(generate())
