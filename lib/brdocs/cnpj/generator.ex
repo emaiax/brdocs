@@ -21,6 +21,7 @@ defmodule BrDocs.CNPJ.Generator do
 
         iex> BrDocs.CNPJ.Generator.generate(formatted: true)
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+
   """
   def generate(opts \\ [formatted: false])
 
@@ -29,8 +30,10 @@ defmodule BrDocs.CNPJ.Generator do
   def generate(formatted: false) do
     doc = Utils.generate_random_numbers(8) <> "0001"
 
-    doc = doc <> Utils.make_digit(doc) # 1st verification digit
-    doc = doc <> Utils.make_digit(doc) # 2nd verification digit
+    # 1st verification digit
+    doc = doc <> Utils.make_digit(doc)
+    # 2nd verification digit
+    doc = doc <> Utils.make_digit(doc)
 
     %BrDoc{kind: :cnpj, value: doc}
   end

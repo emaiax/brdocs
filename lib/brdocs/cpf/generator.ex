@@ -21,6 +21,7 @@ defmodule BrDocs.CPF.Generator do
 
         iex> BrDocs.CPF.Generator.generate(formatted: true)
         %BrDocs.BrDoc{kind: :cnpj, value: "111.444.777-35"}
+
   """
   def generate(opts \\ [formatted: false])
 
@@ -29,8 +30,10 @@ defmodule BrDocs.CPF.Generator do
   def generate(formatted: false) do
     doc = Utils.generate_random_numbers(9)
 
-    doc = doc <> Utils.make_digit(doc) # 1st verification digit
-    doc = doc <> Utils.make_digit(doc) # 2nd verification digit
+    # 1st verification digit
+    doc = doc <> Utils.make_digit(doc)
+    # 2nd verification digit
+    doc = doc <> Utils.make_digit(doc)
 
     %BrDoc{kind: :cpf, value: doc}
   end

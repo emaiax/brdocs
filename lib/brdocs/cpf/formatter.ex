@@ -48,6 +48,7 @@ defmodule BrDocs.CPF.Formatter do
 
         iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"})
         %BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"}
+
   """
   def format(%BrDoc{kind: :cpf, value: ""}), do: make_cpf("")
   def format(%BrDoc{kind: :cpf, value: nil}), do: make_cpf("")

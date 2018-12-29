@@ -6,12 +6,20 @@ defmodule BrDocsTest do
   describe "docs generation" do
     test "generate cpf" do
       assert Regex.match?(~r/\d{11}/, BrDocs.generate(:cpf).value)
-      assert Regex.match?(~r/\d{3}.\d{3}.\d{3}-\d{2}/, BrDocs.generate(:cpf, formatted: true).value)
+
+      assert Regex.match?(
+               ~r/\d{3}.\d{3}.\d{3}-\d{2}/,
+               BrDocs.generate(:cpf, formatted: true).value
+             )
     end
 
     test "generate cnpj" do
       assert Regex.match?(~r/\d{14}/, BrDocs.generate(:cnpj).value)
-      assert Regex.match?(~r/\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}/, BrDocs.generate(:cnpj, formatted: true).value)
+
+      assert Regex.match?(
+               ~r/\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}/,
+               BrDocs.generate(:cnpj, formatted: true).value
+             )
     end
   end
 
@@ -29,7 +37,8 @@ defmodule BrDocsTest do
     end
 
     test "format cnpj struct" do
-      assert "11.444.777/0001-61" == BrDocs.format(%BrDoc{kind: :cnpj, value: "11444777000161"}).value
+      assert "11.444.777/0001-61" ==
+               BrDocs.format(%BrDoc{kind: :cnpj, value: "11444777000161"}).value
     end
   end
 

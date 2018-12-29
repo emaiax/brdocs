@@ -13,7 +13,7 @@ defmodule BrDocs do
   @doc """
   Used mostly for testing, yet you can generate a valid doc. Returns a `BrDocs.BrDoc`.
 
-  The kind must be one of #{Enum.map_join(BrDoc.available_docs, ", ", &"`#{inspect &1}`")}.
+  The kind must be one of #{Enum.map_join(BrDoc.available_docs(), ", ", &"`#{inspect(&1)}`")}.
 
   ## Options
 
@@ -32,6 +32,7 @@ defmodule BrDocs do
 
         iex> BrDocs.generate(:cnpj, formatted: true)
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+
   """
   def generate(kind, opts \\ [formatted: false])
 
@@ -41,7 +42,9 @@ defmodule BrDocs do
   @doc """
   Formats the value. Returns a formatted `BrDocs.BrDoc`.
 
-  The atom argument must be one of #{Enum.map_join(BrDoc.available_docs, ", ", &"`#{inspect &1}`")}.
+  The atom argument must be one of #{
+    Enum.map_join(BrDoc.available_docs(), ", ", &"`#{inspect(&1)}`")
+  }.
 
   ## Examples
 
@@ -50,6 +53,7 @@ defmodule BrDocs do
 
         iex> BrDocs.format("11444777000161", :cnpj)
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+
   """
   def format(value, :cpf), do: BrDocs.CPF.Formatter.format(value)
   def format(value, :cnpj), do: BrDocs.CNPJ.Formatter.format(value)
@@ -64,6 +68,7 @@ defmodule BrDocs do
 
         iex> BrDocs.format(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000161"})
         %BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+
   """
   def format(%BrDoc{kind: :cpf} = brdoc), do: BrDocs.CPF.Formatter.format(brdoc)
   def format(%BrDoc{kind: :cnpj} = brdoc), do: BrDocs.CNPJ.Formatter.format(brdoc)
@@ -71,7 +76,9 @@ defmodule BrDocs do
   @doc """
   Validates the value. Returns a boolean.
 
-  The atom argument must be one of #{Enum.map_join(BrDoc.available_docs, ", ", &"`#{inspect &1}`")}.
+  The atom argument must be one of #{
+    Enum.map_join(BrDoc.available_docs(), ", ", &"`#{inspect(&1)}`")
+  }.
 
   ## Examples
 
@@ -87,7 +94,6 @@ defmodule BrDocs do
         iex> BrDocs.validate("123.456.789-00", :cpf)
         false
 
-
         iex> BrDocs.validate("11444777000161", :cnpj)
         true
 
@@ -99,6 +105,7 @@ defmodule BrDocs do
 
         iex> BrDocs.validate("11.444.777/0001-60", :cnpj)
         false
+
   """
   def validate(value, :cpf), do: BrDocs.CPF.Validator.validate(value)
   def validate(value, :cnpj), do: BrDocs.CNPJ.Validator.validate(value)
@@ -120,7 +127,6 @@ defmodule BrDocs do
         iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cpf, value: "123.456.789-00"})
         false
 
-
         iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000161"})
         true
 
@@ -132,6 +138,7 @@ defmodule BrDocs do
 
         iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-60"})
         false
+
   """
   def validate(%BrDoc{kind: :cpf} = brdoc), do: BrDocs.CPF.Validator.validate(brdoc)
   def validate(%BrDoc{kind: :cnpj} = brdoc), do: BrDocs.CNPJ.Validator.validate(brdoc)

@@ -2,7 +2,7 @@ defmodule BrDocs.CPFTest do
   use ExUnit.Case, async: true
 
   test "cpf is generated" do
-    assert BrDocs.CPF.generate
+    assert BrDocs.CPF.generate()
   end
 
   test "cpf is formatted" do
