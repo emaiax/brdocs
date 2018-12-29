@@ -8,6 +8,8 @@ defmodule App.MixProject do
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: prefered_cli_env(),
       deps: deps(),
       package: package(),
       description: "Elixir client to generate, validate and format different Brazilian docs"
@@ -23,6 +25,15 @@ defmodule App.MixProject do
   # defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
+  defp prefered_cli_env do
+    [
+      "coveralls": :test,
+      "coveralls.post": :test,
+      "coveralls.html": :test,
+      "coveralls.detail": :test
+    ]
+  end
+
   def package do
     [
       files: ~w(lib test config mix.exs README*),
@@ -36,6 +47,7 @@ defmodule App.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.19.0", only: :dev},
+      {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 0.10.0", only: [:dev, :test]}
     ]
   end
