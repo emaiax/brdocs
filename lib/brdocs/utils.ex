@@ -42,7 +42,8 @@ defmodule BrDocs.Utils do
       |> Enum.map(&String.to_integer(&1))
 
     remainder =
-      Enum.zip(numbers, range)
+      numbers
+      |> Enum.zip(range)
       |> Enum.map(fn {num, r} -> num * r end)
       |> Enum.sum()
       |> rem(11)
@@ -63,6 +64,7 @@ defmodule BrDocs.Utils do
 
       iex> BrDocs.Utils.generate_random_numbers(12)
       "064766405673"
+
   """
   def generate_random_numbers(size) do
     Enum.reduce(1..size, "", fn _, acc -> acc <> to_string(Enum.random(0..9)) end)
@@ -91,7 +93,7 @@ defmodule BrDocs.Utils do
 
       iex> BrDocs.Utils.make_digit("1144477700016")
       "1"
-      
+
   """
   def make_digit(value) do
     range =
@@ -101,6 +103,8 @@ defmodule BrDocs.Utils do
         _ -> []
       end
 
-    mod11(value, range) |> to_string()
+    value
+    |> mod11(range)
+    |> to_string()
   end
 end
