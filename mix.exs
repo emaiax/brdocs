@@ -48,6 +48,7 @@ defmodule App.MixProject do
     [
       {:ex_doc, "~> 0.19.0", only: :dev},
       {:excoveralls, "~> 0.10", only: :test},
+      {:ecto, "~> 2.2.0", only: [:dev, :test]},
       {:credo, "~> 0.10.0", only: [:dev, :test]}
     ]
   end
