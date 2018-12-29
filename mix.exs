@@ -27,7 +27,7 @@ defmodule App.MixProject do
 
   defp prefered_cli_env do
     [
-      "coveralls": :test,
+      coveralls: :test,
       "coveralls.post": :test,
       "coveralls.html": :test,
       "coveralls.detail": :test
