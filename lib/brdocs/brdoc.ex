@@ -4,14 +4,14 @@ defmodule BrDocs.BrDoc do
   @moduledoc """
   A struct containing value and kind of the doc.
 
-  * `kind` - An atom to identify which Brazilian doc kind is being held. It must be one of #{
-    Enum.map_join(@available_docs, ", ", &("`#{inspect(&1)}`"))
-  }.
+  * `kind` - An atom to identify which Brazilian doc kind is being held. It must be one of #{formatted_available_docs()}.
   * `value` - A string containing the raw or formatted value of the doc.
   """
 
   defstruct value: "", kind: nil
 
   @doc false
-  def available_docs, do: @available_docs
+  def formatted_available_docs do
+    Enum.map_join(@available_docs, ", ", &("`#{inspect(&1)}`"))
+  end
 end
