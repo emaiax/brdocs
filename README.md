@@ -24,7 +24,7 @@ In `mix.exs`, add the `BrDocs` dependency:
 
 ```elixir
 def deps do
-  # Get the latest from hex.pm. Works with Ecto 2.x
+  # Get the latest from hex.pm. Works with Ecto +2.x
   [
     {:brdocs, "~> 0.1"}
   ]
@@ -75,6 +75,38 @@ true
 
 iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000160"})
 false
+```
+
+## Ecto Support
+
+There are validation functions to make it easier to validate your Brazilian docs using Ecto.
+
+  * `validate_doc` validates a Brazilian doc using the `Ecto.Changeset` just like all `Ecto.Changeset` common validations.
+
+Maybe, more to come.
+
+Usage:
+
+```elixir
+defmodule User do
+  use Ecto.Schema
+  use BrDocs.Changeset
+
+  import Ecto.Changeset
+
+  schema "users" do
+    field :name
+    field :brazilian_doc
+  end
+
+  def changeset(user, params \\\\ %{}) do
+    user
+    |> cast(params, [:name, :brazilian_doc])
+    |> validate_required([:name, :brazilian_doc])
+    |> validate_doc(:brazilian_doc, :cpf)
+    |> unique_constraint(:brazilian_doc)
+  end
+end
 ```
 
 ## Contributing
