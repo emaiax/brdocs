@@ -12,6 +12,7 @@ defmodule App.MixProject do
       preferred_cli_env: prefered_cli_env(),
       deps: deps(),
       package: package(),
+      docs: [main: "readme", extras: ["README.md"]],
       description: "Elixir client to generate, validate and format different Brazilian docs"
     ]
   end
