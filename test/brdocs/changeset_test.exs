@@ -4,7 +4,6 @@ defmodule BrDocs.ChangesetTest do
   import BrDocs.Changeset
 
   # default Ecto.Changeset structure
-  #
   defp changeset_cast(changes) when is_map(changes) do
     %Ecto.Changeset{
       action: nil,

@@ -48,7 +48,7 @@ defmodule BrDocs.Changeset do
         end
       end
   """
-  @spec validate_doc(Ecto.Changeset.t(), atom(), atom(), String.t()) :: Ecto.Changeset.t()
+  @spec validate_doc(Ecto.Changeset.t(), atom(), atom(), String.t() | nil) :: Ecto.Changeset.t()
   def validate_doc(changeset, field, kind, custom_message \\ nil) do
     with value <- Ecto.Changeset.get_change(changeset, field, ""),
          true <- BrDocs.validate(value, kind) do
