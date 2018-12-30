@@ -50,7 +50,10 @@ defmodule App.MixProject do
       {:ex_doc, "~> 0.19.0", only: :dev},
       {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 0.10.0", only: [:dev, :test]},
-      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
+
+      # optional
+      {:ecto, "~> 2.2 or ~> 3.0", optional: true}
     ]
   end
 end
