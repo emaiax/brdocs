@@ -14,7 +14,12 @@ defmodule App.MixProject do
       preferred_cli_env: prefered_cli_env(),
       deps: deps(),
       package: package(),
-      description: "Elixir client to generate, validate and format different Brazilian docs"
+      description: "Elixir client to generate, validate and format different Brazilian docs",
+
+      # docs
+      source_url: "https://github.com/emaiax/brdocs",
+      homepage_url: "https://github.com/emaiax/brdocs",
+      docs: [extras: ["README.md"]]
     ]
   end
 

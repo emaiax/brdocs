@@ -1,4 +1,4 @@
-# brdocs
+# BrDocs
 
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![Hex Version](https://img.shields.io/hexpm/v/brdocs.svg)](https://hex.pm/packages/brdocs)
