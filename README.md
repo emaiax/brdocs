@@ -79,9 +79,9 @@ false
 
 ## Ecto Support
 
-There are validation functions to make it easier to validate your Brazilian docs using Ecto.
+There is a validation functions to makes it easy to validate your Brazilian docs w/ Ecto.
 
-  * `validate_doc` validates a Brazilian doc using the `Ecto.Changeset` just like all `Ecto.Changeset` common validations.
+  * `validate_doc` validates a Brazilian doc in your `Ecto.Changeset`.
 
 Maybe, more to come.
 
@@ -90,9 +90,9 @@ Usage:
 ```elixir
 defmodule User do
   use Ecto.Schema
-  use BrDocs.Changeset
 
   import Ecto.Changeset
+  import BrDocs.Changeset
 
   schema "users" do
     field :name
