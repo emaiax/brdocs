@@ -14,7 +14,7 @@ _Currently supported docs: CPF, CNPJ_
 
 > **This README follows master branch, which may not be the currently published version.**
 >
-> Here are the docs for the latest published version of [BrDocs](https://hexdocs.pm/brdocs/readme.html).
+> Here are the docs for the latest published version of [BrDocs](https://hexdocs.pm/brdocs).
 
 ## Installation
 
