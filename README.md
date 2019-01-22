@@ -99,7 +99,7 @@ defmodule User do
     field :brazilian_doc
   end
 
-  def changeset(user, params \\\\ %{}) do
+  def changeset(user, params \\ %{}) do
     user
     |> cast(params, [:name, :brazilian_doc])
     |> validate_required([:name, :brazilian_doc])
