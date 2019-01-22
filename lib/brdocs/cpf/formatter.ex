@@ -74,6 +74,65 @@ defmodule BrDocs.CPF.Formatter do
     |> format()
   end
 
+  @doc """
+  Formats a `BrDocs.BrDoc` CPF value stripping all non-numbers. Returns a raw value `BrDocs.BrDoc`.
+
+  This function accepts either a string containing the CPF value or a `BrDocs.BrDoc`.
+
+  ## Examples
+
+        iex> BrDocs.CPF.Formatter.strip("")
+        %BrDocs.BrDoc{kind: :cpf, value: ""}
+
+        iex> BrDocs.CPF.Formatter.strip(nil)
+        %BrDocs.BrDoc{kind: :cpf, value: nil}
+
+        iex> BrDocs.CPF.Formatter.strip("123")
+        %BrDocs.BrDoc{kind: :cpf, value: "123"}
+
+        iex> BrDocs.CPF.Formatter.strip("11144477735")
+        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+
+        iex> BrDocs.CPF.Formatter.strip("11144477735")
+        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: ""})
+        %BrDocs.BrDoc{kind: :cpf, value: ""}
+
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: nil})
+        %BrDocs.BrDoc{kind: :cpf, value: ""}
+
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: "123"})
+        %BrDocs.BrDoc{kind: :cpf, value: "123"}
+
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: "11144477735"})
+        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"})
+        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+
+  """
+  @spec strip(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
+  def strip(%BrDoc{kind: :cpf, value: ""} = brdoc), do: make_cpf("")
+  def strip(%BrDoc{kind: :cpf, value: nil} = brdoc), do: make_cpf("")
+
+  def strip(%BrDoc{kind: :cpf, value: value} = brdoc) do
+    value =
+      value
+      |> to_string()
+      |> String.replace(~r/\D/, "", global: true)
+
+    %{brdoc | value: value}
+  end
+
+  @spec strip(String.t()) :: BrDocs.BrDoc.t()
+  def strip(value) do
+    value
+    |> to_string()
+    |> String.replace(~r/\D/, "", global: true)
+    |> make_cpf()
+  end
+
   defp format_value(value) do
     Regex.replace(@doc_regex, value, @regex_replacement)
   end

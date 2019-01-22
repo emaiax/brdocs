@@ -145,4 +145,8 @@ defmodule BrDocs do
   @spec validate(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
   def validate(%BrDoc{kind: :cpf} = brdoc), do: BrDocs.CPF.Validator.validate(brdoc)
   def validate(%BrDoc{kind: :cnpj} = brdoc), do: BrDocs.CNPJ.Validator.validate(brdoc)
+
+  @spec strip(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
+  def strip(%BrDoc{kind: :cpf} = brdoc), do: BrDocs.CPF.Formatter.strip(brdoc)
+  def strip(%BrDoc{kind: :cnpj} = brdoc), do: BrDocs.CNPJ.Formatter.strip(brdoc)
 end
