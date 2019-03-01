@@ -1,10 +1,10 @@
 defmodule BrDocs.CPF.ValidatorTest do
   use ExUnit.Case, async: true
 
-  alias BrDocs.BrDoc
+  alias BrDocs.Doc
 
   defp validate_cpf_struct(value) do
-    BrDocs.CPF.Validator.validate(%BrDoc{kind: :cpf, value: value})
+    BrDocs.CPF.Validator.validate(%Doc{kind: :cpf, value: value})
   end
 
   describe to_string(__MODULE__) do

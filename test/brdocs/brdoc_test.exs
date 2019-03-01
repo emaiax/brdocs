@@ -1,7 +1,7 @@
-defmodule BrDocs.BrDocTest do
+defmodule BrDocs.DocTest do
   use ExUnit.Case, async: true
 
   test "available docs" do
-    assert "`:cpf`, `:cnpj`" == BrDocs.BrDoc.formatted_available_docs()
+    assert "`:cpf`, `:cnpj`" == BrDocs.Doc.formatted_available_docs()
   end
 end

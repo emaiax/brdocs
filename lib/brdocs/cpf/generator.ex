@@ -3,12 +3,12 @@ defmodule BrDocs.CPF.Generator do
   CNPJ Generator.
   """
 
-  alias BrDocs.{BrDoc, Utils}
+  alias BrDocs.{Doc, Utils}
 
   alias BrDocs.CPF.Formatter
 
   @doc """
-  Used mostly for testing, yet you can generate a valid CPF. Returns a `BrDocs.BrDoc`.
+  Used mostly for testing, yet you can generate a valid CPF. Returns a `BrDocs.Doc`.
 
   ## Options
 
@@ -17,13 +17,13 @@ defmodule BrDocs.CPF.Generator do
   ## Examples
 
         iex> BrDocs.CPF.Generator.generate()
-        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+        %BrDocs.Doc{kind: :cpf, value: "11144477735"}
 
         iex> BrDocs.CPF.Generator.generate(formatted: true)
-        %BrDocs.BrDoc{kind: :cnpj, value: "111.444.777-35"}
+        %BrDocs.Doc{kind: :cnpj, value: "111.444.777-35"}
 
   """
-  @spec generate(keyword(boolean())) :: BrDocs.BrDoc.t()
+  @spec generate(keyword(boolean())) :: BrDocs.Doc.t()
   def generate(opts \\ [formatted: false])
 
   def generate(formatted: true), do: Formatter.format(generate())
@@ -36,6 +36,6 @@ defmodule BrDocs.CPF.Generator do
     # 2nd verification digit
     doc = doc <> Utils.make_digit(doc)
 
-    %BrDoc{kind: :cpf, value: doc}
+    %Doc{kind: :cpf, value: doc}
   end
 end
