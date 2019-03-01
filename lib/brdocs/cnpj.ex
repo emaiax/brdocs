@@ -6,11 +6,11 @@ defmodule BrDocs.CNPJ do
   """
 
   @doc """
-  Formats a CNPJ value into CNPJ format. Returns a formatted `BrDocs.BrDoc`.
+  Formats a CNPJ value into CNPJ format. Returns a formatted `BrDocs.Doc`.
 
   Delegates the formatting to `BrDocs.CNPJ.Formatter.format/1`.
   """
-  @spec format(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
+  @spec format(String.t() | BrDocs.Doc.t()) :: BrDocs.Doc.t()
   defdelegate format(value), to: BrDocs.CNPJ.Formatter
 
   @doc """
@@ -18,14 +18,14 @@ defmodule BrDocs.CNPJ do
 
   Delegates the validation to `BrDocs.CNPJ.Validator.validate/1`.
   """
-  @spec validate(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
+  @spec validate(String.t() | BrDocs.Doc.t()) :: BrDocs.Doc.t()
   defdelegate validate(value), to: BrDocs.CNPJ.Validator
 
   @doc """
-  Used mostly for testing, yet you can generate a valid CNPJ. Returns a `BrDocs.BrDoc`.
+  Used mostly for testing, yet you can generate a valid CNPJ. Returns a `BrDocs.Doc`.
 
   Delegates the generation to `BrDocs.CNPJ.Generator.generate/1`.
   """
-  @spec generate(keyword()) :: BrDocs.BrDoc.t()
+  @spec generate(keyword()) :: BrDocs.Doc.t()
   defdelegate generate(opts \\ [formatted: false]), to: BrDocs.CNPJ.Generator
 end

@@ -1,10 +1,10 @@
 defmodule BrDocs.CNPJ.ValidatorTest do
   use ExUnit.Case, async: true
 
-  alias BrDocs.BrDoc
+  alias BrDocs.Doc
 
   defp validate_cnpj_struct(value) do
-    BrDocs.CNPJ.Validator.validate(%BrDoc{kind: :cnpj, value: value})
+    BrDocs.CNPJ.Validator.validate(%Doc{kind: :cnpj, value: value})
   end
 
   describe to_string(__MODULE__) do

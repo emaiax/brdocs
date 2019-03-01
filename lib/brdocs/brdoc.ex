@@ -1,4 +1,4 @@
-defmodule BrDocs.BrDoc do
+defmodule BrDocs.Doc do
   @available_docs [:cpf, :cnpj]
 
   @moduledoc """
@@ -8,7 +8,7 @@ defmodule BrDocs.BrDoc do
   * `value` - A string containing the raw or formatted value of the doc.
   """
 
-  @type t() :: %BrDocs.BrDoc{kind: atom(), value: String.t()}
+  @type t() :: %BrDocs.Doc{kind: atom(), value: String.t()}
 
   defstruct value: "", kind: nil
 

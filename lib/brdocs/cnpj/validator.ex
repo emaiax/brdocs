@@ -3,12 +3,12 @@ defmodule BrDocs.CNPJ.Validator do
   CNPJ Validator.
   """
 
-  alias BrDocs.{BrDoc, Utils}
+  alias BrDocs.{Doc, Utils}
 
   @doc """
-  Validates a `BrDocs.BrDoc` CNPJ value against CNPJ validation rules. Returns a boolean.
+  Validates a `BrDocs.Doc` CNPJ value against CNPJ validation rules. Returns a boolean.
 
-  This function accepts either a string containing the CNPJ value or a `BrDocs.BrDoc`.
+  This function accepts either a string containing the CNPJ value or a `BrDocs.Doc`.
 
   ## Examples
 
@@ -33,33 +33,33 @@ defmodule BrDocs.CNPJ.Validator do
         iex> BrDocs.CNPJ.Validator.validate("11.444.777/0001-61")
         true
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: ""})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: ""})
         false
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: nil})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: nil})
         false
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: "123"})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: "123"})
         false
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000160"})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: "11444777000160"})
         false
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-60"})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: "11.444.777/0001-60"})
         false
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000161"})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: "11444777000161"})
         true
 
-        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"})
+        iex> BrDocs.CNPJ.Validator.validate(%BrDocs.Doc{kind: :cnpj, value: "11.444.777/0001-61"})
         true
 
   """
-  @spec validate(BrDocs.BrDoc.t()) :: boolean()
-  def validate(%BrDoc{kind: :cnpj, value: ""}), do: false
-  def validate(%BrDoc{kind: :cnpj, value: nil}), do: false
+  @spec validate(BrDocs.Doc.t()) :: boolean()
+  def validate(%Doc{kind: :cnpj, value: ""}), do: false
+  def validate(%Doc{kind: :cnpj, value: nil}), do: false
 
-  def validate(%BrDoc{kind: :cnpj, value: value}) do
+  def validate(%Doc{kind: :cnpj, value: value}) do
     value = value |> to_string() |> String.replace(~r/\D/, "", global: true)
 
     first_digit =
@@ -83,6 +83,6 @@ defmodule BrDocs.CNPJ.Validator do
   end
 
   defp make_cnpj(value) do
-    %BrDoc{kind: :cnpj, value: value}
+    %Doc{kind: :cnpj, value: value}
   end
 end
