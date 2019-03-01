@@ -1,7 +1,7 @@
-defmodule BrDocs.BrDocTypeTest do
+defmodule BrDocs.DocTypeTest do
   use ExUnit.Case, async: true
 
-  import BrDocs.BrDoc
+  import BrDocs.Doc
 
   defmodule User do
     use Ecto.Schema
@@ -11,7 +11,7 @@ defmodule BrDocs.BrDocTypeTest do
 
     schema "users" do
       field :name, :string
-      field :document, BrDocs.BrDoc.Type
+      field :document, BrDocs.Doc.Type
     end
 
     def changeset(attrs) do

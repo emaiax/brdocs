@@ -3,57 +3,57 @@ defmodule BrDocs.CPF.Formatter do
   CPF Formatter.
   """
 
-  alias BrDocs.BrDoc
+  alias BrDocs.Doc
 
   @raw_size 11
   @regex_replacement "\\1.\\2.\\3-\\4"
   @doc_regex ~r/(\d{3})?(\d{3})?(\d{3})?(\d{2})/
 
   @doc """
-  Formats a `BrDocs.BrDoc` CPF value into CPF format. Returns a formatted `BrDocs.BrDoc`.
+  Formats a `BrDocs.Doc` CPF value into CPF format. Returns a formatted `BrDocs.Doc`.
 
-  CPF value length should be 11 characters. Otherwise, returns a `BrDocs.BrDoc` with the raw and unformatted value.
+  CPF value length should be 11 characters. Otherwise, returns a `BrDocs.Doc` with the raw and unformatted value.
 
-  This function accepts either a string containing the CPF value or a `BrDocs.BrDoc`.
+  This function accepts either a string containing the CPF value or a `BrDocs.Doc`.
 
   ## Examples
 
         iex> BrDocs.CPF.Formatter.format("")
-        %BrDocs.BrDoc{kind: :cpf, value: ""}
+        %BrDocs.Doc{kind: :cpf, value: ""}
 
         iex> BrDocs.CPF.Formatter.format(nil)
-        %BrDocs.BrDoc{kind: :cpf, value: nil}
+        %BrDocs.Doc{kind: :cpf, value: nil}
 
         iex> BrDocs.CPF.Formatter.format("123")
-        %BrDocs.BrDoc{kind: :cpf, value: "123"}
+        %BrDocs.Doc{kind: :cpf, value: "123"}
 
         iex> BrDocs.CPF.Formatter.format("11144477735")
-        %BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"}
+        %BrDocs.Doc{kind: :cpf, value: "111.444.777-35"}
 
         iex> BrDocs.CPF.Formatter.format("111.444.777-35")
-        %BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"}
+        %BrDocs.Doc{kind: :cpf, value: "111.444.777-35"}
 
-        iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: ""})
-        %BrDocs.BrDoc{kind: :cpf, value: ""}
+        iex> BrDocs.CPF.Formatter.format(%BrDocs.Doc{kind: :cpf, value: ""})
+        %BrDocs.Doc{kind: :cpf, value: ""}
 
-        iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: nil})
-        %BrDocs.BrDoc{kind: :cpf, value: ""}
+        iex> BrDocs.CPF.Formatter.format(%BrDocs.Doc{kind: :cpf, value: nil})
+        %BrDocs.Doc{kind: :cpf, value: ""}
 
-        iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: "123"})
-        %BrDocs.BrDoc{kind: :cpf, value: "123"}
+        iex> BrDocs.CPF.Formatter.format(%BrDocs.Doc{kind: :cpf, value: "123"})
+        %BrDocs.Doc{kind: :cpf, value: "123"}
 
-        iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: "11144477735"})
-        %BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"}
+        iex> BrDocs.CPF.Formatter.format(%BrDocs.Doc{kind: :cpf, value: "11144477735"})
+        %BrDocs.Doc{kind: :cpf, value: "111.444.777-35"}
 
-        iex> BrDocs.CPF.Formatter.format(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"})
-        %BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"}
+        iex> BrDocs.CPF.Formatter.format(%BrDocs.Doc{kind: :cpf, value: "111.444.777-35"})
+        %BrDocs.Doc{kind: :cpf, value: "111.444.777-35"}
 
   """
-  @spec format(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
-  def format(%BrDoc{kind: :cpf, value: ""}), do: make_cpf("")
-  def format(%BrDoc{kind: :cpf, value: nil}), do: make_cpf("")
+  @spec format(BrDocs.Doc.t()) :: BrDocs.Doc.t()
+  def format(%Doc{kind: :cpf, value: ""}), do: make_cpf("")
+  def format(%Doc{kind: :cpf, value: nil}), do: make_cpf("")
 
-  def format(%BrDoc{kind: :cpf, value: value}) do
+  def format(%Doc{kind: :cpf, value: value}) do
     raw_value =
       value
       |> to_string()
@@ -67,7 +67,7 @@ defmodule BrDocs.CPF.Formatter do
     make_cpf(doc)
   end
 
-  @spec format(String.t()) :: BrDocs.BrDoc.t()
+  @spec format(String.t()) :: BrDocs.Doc.t()
   def format(value) do
     value
     |> make_cpf()
@@ -75,48 +75,48 @@ defmodule BrDocs.CPF.Formatter do
   end
 
   @doc """
-  Formats a `BrDocs.BrDoc` CPF value stripping all non-numbers. Returns a raw value `BrDocs.BrDoc`.
+  Formats a `BrDocs.Doc` CPF value stripping all non-numbers. Returns a raw value `BrDocs.Doc`.
 
-  This function accepts either a string containing the CPF value or a `BrDocs.BrDoc`.
+  This function accepts either a string containing the CPF value or a `BrDocs.Doc`.
 
   ## Examples
 
         iex> BrDocs.CPF.Formatter.strip("")
-        %BrDocs.BrDoc{kind: :cpf, value: ""}
+        %BrDocs.Doc{kind: :cpf, value: ""}
 
         iex> BrDocs.CPF.Formatter.strip(nil)
-        %BrDocs.BrDoc{kind: :cpf, value: nil}
+        %BrDocs.Doc{kind: :cpf, value: nil}
 
         iex> BrDocs.CPF.Formatter.strip("123")
-        %BrDocs.BrDoc{kind: :cpf, value: "123"}
+        %BrDocs.Doc{kind: :cpf, value: "123"}
 
         iex> BrDocs.CPF.Formatter.strip("11144477735")
-        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+        %BrDocs.Doc{kind: :cpf, value: "11144477735"}
 
         iex> BrDocs.CPF.Formatter.strip("11144477735")
-        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+        %BrDocs.Doc{kind: :cpf, value: "11144477735"}
 
-        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: ""})
-        %BrDocs.BrDoc{kind: :cpf, value: ""}
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.Doc{kind: :cpf, value: ""})
+        %BrDocs.Doc{kind: :cpf, value: ""}
 
-        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: nil})
-        %BrDocs.BrDoc{kind: :cpf, value: ""}
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.Doc{kind: :cpf, value: nil})
+        %BrDocs.Doc{kind: :cpf, value: ""}
 
-        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: "123"})
-        %BrDocs.BrDoc{kind: :cpf, value: "123"}
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.Doc{kind: :cpf, value: "123"})
+        %BrDocs.Doc{kind: :cpf, value: "123"}
 
-        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: "11144477735"})
-        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.Doc{kind: :cpf, value: "11144477735"})
+        %BrDocs.Doc{kind: :cpf, value: "11144477735"}
 
-        iex> BrDocs.CPF.Formatter.strip(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"})
-        %BrDocs.BrDoc{kind: :cpf, value: "11144477735"}
+        iex> BrDocs.CPF.Formatter.strip(%BrDocs.Doc{kind: :cpf, value: "111.444.777-35"})
+        %BrDocs.Doc{kind: :cpf, value: "11144477735"}
 
   """
-  @spec strip(BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
-  def strip(%BrDoc{kind: :cpf, value: ""} = brdoc), do: make_cpf("")
-  def strip(%BrDoc{kind: :cpf, value: nil} = brdoc), do: make_cpf("")
+  @spec strip(BrDocs.Doc.t()) :: BrDocs.Doc.t()
+  def strip(%Doc{kind: :cpf, value: ""}), do: make_cpf("")
+  def strip(%Doc{kind: :cpf, value: nil}), do: make_cpf("")
 
-  def strip(%BrDoc{kind: :cpf, value: value} = brdoc) do
+  def strip(%Doc{kind: :cpf, value: value} = brdoc) do
     value =
       value
       |> to_string()
@@ -125,7 +125,7 @@ defmodule BrDocs.CPF.Formatter do
     %{brdoc | value: value}
   end
 
-  @spec strip(String.t()) :: BrDocs.BrDoc.t()
+  @spec strip(String.t()) :: BrDocs.Doc.t()
   def strip(value) do
     value
     |> to_string()
@@ -138,6 +138,6 @@ defmodule BrDocs.CPF.Formatter do
   end
 
   defp make_cpf(value) do
-    %BrDoc{kind: :cpf, value: value}
+    %Doc{kind: :cpf, value: value}
   end
 end

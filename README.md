@@ -39,41 +39,41 @@ Generating valid (but fake) docs:
 
 ```elixir
 iex> BrDocs.generate(:cpf)
-%BrDocs.BrDoc{kind: :cpf, value: "12345678909"}
+%BrDocs.Doc{kind: :cpf, value: "12345678909"}
 
 iex> BrDocs.generate(:cpf, formatted: true)
-%BrDocs.BrDoc{kind: :cpf, value: "123.456.789-09"}
+%BrDocs.Doc{kind: :cpf, value: "123.456.789-09"}
 
 iex> BrDocs.generate(:cnpj)
-%BrDocs.BrDoc{kind: :cnpj, value: "11444777000161"}
+%BrDocs.Doc{kind: :cnpj, value: "11444777000161"}
 
 iex> BrDocs.generate(:cnpj, formatted: true)
-%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+%BrDocs.Doc{kind: :cnpj, value: "11.444.777/0001-61"}
 ```
 
 Format docs:
 
 ```elixir
 iex> BrDocs.format("12345678909", :cpf)
-%BrDocs.BrDoc{kind: :cpf, value: "123.456.789-09"}
+%BrDocs.Doc{kind: :cpf, value: "123.456.789-09"}
 
 iex> BrDocs.format("11444777000161", :cnpj)
-%BrDocs.BrDoc{kind: :cnpj, value: "11.444.777/0001-61"}
+%BrDocs.Doc{kind: :cnpj, value: "11.444.777/0001-61"}
 ```
 
 Validate docs:
 
 ```elixir
-iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cpf, value: "12345678909"})
+iex> BrDocs.validate(%BrDocs.Doc{kind: :cpf, value: "12345678909"})
 true
 
-iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cpf, value: "12345678900"})
+iex> BrDocs.validate(%BrDocs.Doc{kind: :cpf, value: "12345678900"})
 false
 
-iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000161"})
+iex> BrDocs.validate(%BrDocs.Doc{kind: :cnpj, value: "11444777000161"})
 true
 
-iex> BrDocs.validate(%BrDocs.BrDoc{kind: :cnpj, value: "11444777000160"})
+iex> BrDocs.validate(%BrDocs.Doc{kind: :cnpj, value: "11444777000160"})
 false
 ```
 
@@ -99,7 +99,7 @@ defmodule User do
     field :brazilian_doc
   end
 
-  def changeset(user, params \\\\ %{}) do
+  def changeset(user, params \\ %{}) do
     user
     |> cast(params, [:name, :brazilian_doc])
     |> validate_required([:name, :brazilian_doc])

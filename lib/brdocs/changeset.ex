@@ -12,8 +12,8 @@ if Code.ensure_loaded?(Ecto) do
     Arguments are:
 
     * `field` - is the changeset field to be validated
-    * `kind` - is the `BrDocs.BrDoc` document kind which will identify the validation rule. It must be one of #{
-      BrDocs.BrDoc.formatted_available_docs()
+    * `kind` - is the `BrDocs.Doc` document kind which will identify the validation rule. It must be one of #{
+      BrDocs.Doc.formatted_available_docs()
     }.
 
     ## Examples

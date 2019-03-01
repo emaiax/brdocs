@@ -6,11 +6,11 @@ defmodule BrDocs.CPF do
   """
 
   @doc """
-  Formats a CPF value into CPF format. Returns a formatted `BrDocs.BrDoc`.
+  Formats a CPF value into CPF format. Returns a formatted `BrDocs.Doc`.
 
   Delegates the formatting to `BrDocs.CPF.Formatter.format/1`.
   """
-  @spec format(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
+  @spec format(String.t() | BrDocs.Doc.t()) :: BrDocs.Doc.t()
   defdelegate format(value), to: BrDocs.CPF.Formatter
 
   @doc """
@@ -18,14 +18,14 @@ defmodule BrDocs.CPF do
 
   Delegates the validation to `BrDocs.CPF.Validator.validate/1`.
   """
-  @spec validate(String.t() | BrDocs.BrDoc.t()) :: BrDocs.BrDoc.t()
+  @spec validate(String.t() | BrDocs.Doc.t()) :: BrDocs.Doc.t()
   defdelegate validate(value), to: BrDocs.CPF.Validator
 
   @doc """
-  Used mostly for testing, yet you can generate a valid CPF. Returns a `BrDocs.BrDoc`.
+  Used mostly for testing, yet you can generate a valid CPF. Returns a `BrDocs.Doc`.
 
   Delegates the generation to `BrDocs.CPF.Generator.generate/1`.
   """
-  @spec generate(keyword()) :: BrDocs.BrDoc.t()
+  @spec generate(keyword()) :: BrDocs.Doc.t()
   defdelegate generate(opts \\ [formatted: false]), to: BrDocs.CPF.Generator
 end

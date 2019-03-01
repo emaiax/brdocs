@@ -3,12 +3,12 @@ defmodule BrDocs.CPF.Validator do
   CPF Validator.
   """
 
-  alias BrDocs.{BrDoc, Utils}
+  alias BrDocs.{Doc, Utils}
 
   @doc """
-  Validates a `BrDocs.BrDoc` CPF value against CPF validation rules. Returns a boolean.
+  Validates a `BrDocs.Doc` CPF value against CPF validation rules. Returns a boolean.
 
-  This function accepts either a string containing the CPF value or a `BrDocs.BrDoc`.
+  This function accepts either a string containing the CPF value or a `BrDocs.Doc`.
 
   ## Examples
 
@@ -33,33 +33,33 @@ defmodule BrDocs.CPF.Validator do
         iex> BrDocs.CPF.Validator.validate("111.444.777-35")
         true
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: ""})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: ""})
         false
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: nil})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: nil})
         false
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: "123"})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: "123"})
         false
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: "11144477730"})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: "11144477730"})
         false
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-30"})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: "111.444.777-30"})
         false
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: "11144477735"})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: "11144477735"})
         true
 
-        iex> BrDocs.CPF.Validator.validate(%BrDocs.BrDoc{kind: :cpf, value: "111.444.777-35"})
+        iex> BrDocs.CPF.Validator.validate(%BrDocs.Doc{kind: :cpf, value: "111.444.777-35"})
         true
 
   """
-  @spec validate(BrDocs.BrDoc.t()) :: boolean()
-  def validate(%BrDoc{kind: :cpf, value: ""}), do: false
-  def validate(%BrDoc{kind: :cpf, value: nil}), do: false
+  @spec validate(BrDocs.Doc.t()) :: boolean()
+  def validate(%Doc{kind: :cpf, value: ""}), do: false
+  def validate(%Doc{kind: :cpf, value: nil}), do: false
 
-  def validate(%BrDoc{kind: :cpf, value: value}) do
+  def validate(%Doc{kind: :cpf, value: value}) do
     value = value |> to_string() |> String.replace(~r/\D/, "", global: true)
 
     first_digit =
@@ -83,6 +83,6 @@ defmodule BrDocs.CPF.Validator do
   end
 
   defp make_cpf(value) do
-    %BrDoc{kind: :cpf, value: value}
+    %Doc{kind: :cpf, value: value}
   end
 end

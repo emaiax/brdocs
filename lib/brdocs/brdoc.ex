@@ -1,4 +1,4 @@
-defmodule BrDocs.BrDoc do
+defmodule BrDocs.Doc do
   @available_docs [:cpf, :cnpj]
 
   @moduledoc """
@@ -8,7 +8,7 @@ defmodule BrDocs.BrDoc do
   * `value` - A string containing the raw or formatted value of the doc.
   """
 
-  @type t() :: %BrDocs.BrDoc{kind: atom(), value: String.t()}
+  @type t() :: %BrDocs.Doc{kind: atom(), value: String.t()}
 
   defstruct value: "", kind: nil
 
@@ -19,33 +19,33 @@ defmodule BrDocs.BrDoc do
     defmodule Type do
       @behaviour Ecto.Type
 
-      alias BrDocs.BrDoc
+      alias BrDocs.Doc
 
       def type, do: :map
 
       # Provide custom casting rules.
       #
       # Accept casting of BrDoc structs as well
-      def cast(%BrDocs.BrDoc{} = doc), do: {:ok, doc}
+      def cast(%BrDocs.Doc{} = doc), do: {:ok, doc}
       #
       # Cast map into the BrDoc struct to be used at runtime
-      def cast(%{value: value, kind: kind}), do: {:ok, %BrDoc{kind: kind, value: value}}
-      #
+      def cast(%{value: value, kind: kind}), do: {:ok, %Doc{kind: kind, value: value}}
+
       # Cast string into the BrDoc struct to be used at runtime
-      def cast(value) when is_bitstring(value), do: {:ok, %BrDoc{kind: discover_kind(value), value: value}}
+      def cast(value) when is_bitstring(value), do: {:ok, %Doc{kind: discover_kind(value), value: value}}
 
       # When loading data from the database, we are guaranteed to
       # receive a map (as databases are strict) and we will
       # just put the data back into an BrDoc struct to be stored
       # in the loaded schema struct.
       def load(value) do
-        {:ok, %BrDoc{kind: discover_kind(value), value: value}}
+        {:ok, %Doc{kind: discover_kind(value), value: value}}
       end
 
       # When dumping data to the database, we *expect* an BrDoc struct
       # but any value could be inserted into the schema struct at runtime,
       # so we need to guard against them.
-      def dump(%BrDoc{} = doc), do: {:ok, doc.value}
+      def dump(%Doc{} = doc), do: {:ok, doc.value}
       def dump(_), do: :error
 
       defp discover_kind(value) do
