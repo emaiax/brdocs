@@ -1,0 +1,38 @@
+version: 2
+registries:
+  hex-organization-oban:
+    type: hex-organization
+    organization: oban
+    key: "${{secrets.HEX_ORGANIZATION_OBAN_KEY}}"
+
+updates:
+- package-ecosystem: mix
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "08:00"
+  open-pull-requests-limit: 99
+  reviewers:
+  - emaiax
+  labels:
+  - enhancement
+  ignore:
+  - dependency-name: credo
+    versions:
+    - "> 0.10.2"
+  - dependency-name: ecto
+    versions:
+    - 3.5.6
+    - 3.5.7
+    - 3.5.8
+    - 3.6.0
+  - dependency-name: ex_doc
+    versions:
+    - 0.23.0
+    - 0.24.0
+    - 0.24.1
+  - dependency-name: excoveralls
+    versions:
+    - 0.13.4
+  registries:
+  - hex-organization-oban
